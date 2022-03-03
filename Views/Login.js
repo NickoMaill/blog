@@ -14,9 +14,10 @@ export default function Login() {
 
     const submitForm = () => {
 
-        if (username.length <= 10 && username.length >= 1) {
+        if (username <= 10 && username >= 1) {
             setCorrectLength(true);
             stateContext.setIsLogged(true)
+            stateContext.setUserId(username)
             navigate("/home");
 
         } else if (username.length > 10 || username.length < 1) {

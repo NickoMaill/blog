@@ -1,5 +1,5 @@
 //MODULE IMPORT
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import { Context } from "./Context/BlogContext";
 
@@ -12,10 +12,18 @@ import User from './Views/User';
 export default function App() {
 
   const [isLogged, setIsLogged] = useState(false)
+  const [userId, setUserId] = useState(null)
+  const [userPost, setUserPost] = useState([])
 
   const value = {
     isLogged: isLogged,
     setIsLogged: setIsLogged,
+
+    userId: userId,
+    setUserId: setUserId,
+
+    userPost: userPost,
+    setUserPost: setUserPost,
   }
 
   return (
