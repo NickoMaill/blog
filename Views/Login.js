@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, SafeAreaView } from "react-native";
 import { useNavigate } from "react-router-native";
 // import { Context } from "../App";
@@ -13,23 +13,25 @@ export default function Login() {
   const submitForm = () => {
 
     if (username.length <= 10 && username.length >= 1 ) {
-      stateContext.setIsLogged(true);
       setCorrectLength(true);
-      navigate("/");
+      navigate("/home");
 
     } else if (username.length > 10 || username.length < 1) {
       setCorrectLength(false)
-
     }
 
   }
+
+ useEffect(() => {
+     console.log(username);
+ }, [username])
 
   return (
     <SafeAreaView>
 
       <View>
 
-        <Text style={styles.text}>ACCUEIL</Text>
+        <Text style={styles.text}>Login</Text>
 
         <Text>Entrez votre nom d'utilisateur pour acceder a votre compte</Text>
 
@@ -38,7 +40,7 @@ export default function Login() {
           placeholder="username / Pseudo"
           onChange={(e) => setUsername(e.target.value)}
         />
-        {!correctLength && <Text>Votre username doit contenir 6 caractères minimum</Text>}
+        {!correctLength && <Text>Votre username doit contenir entre 1 et 10 caractères</Text>}
 
         <TouchableOpacity style={styles.submit} onPress={submitForm}>
           <Text>Se Connecter</Text>
