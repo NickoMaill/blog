@@ -1,12 +1,8 @@
 import { SafeAreaView, Text } from "react-native";
 import { useEffect } from "react";
 import Navbar from "../Components/Navbar";
-import { useNavigate } from "react-router-native";
 
-export default function Home() {
-    const navigate = useNavigate()
-
-
+export default function NewPost() {
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users/1/posts")
@@ -19,8 +15,9 @@ export default function Home() {
     return (
         <SafeAreaView>
 
-            <Text>Accueil</Text>
+            <Text>Nouveau post</Text>
             <Navbar/>
+
         </SafeAreaView>
     )
 }

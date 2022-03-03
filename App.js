@@ -6,6 +6,8 @@ import { Context } from "./Context/BlogContext";
 //VIEWS IMPORT
 import Login from './Views/Login';
 import Home from './Views/Home';
+import NewPost from './Views/NewPost';
+import User from './Views/User';
 
 export default function App() {
 
@@ -24,6 +26,8 @@ export default function App() {
         <Routes>
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/newpost" element={<NewPost />} />
+          <Route exact path="/user" element={<User />} />
         </Routes>
 
       </NativeRouter>
