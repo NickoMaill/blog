@@ -1,83 +1,112 @@
-import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-native";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import { Context } from "../Context/BlogContext";
 // import { Context } from "../App";
 
 export default function Login() {
 
-  const navigate = useNavigate();
+    const stateContext = useContext(Context)
+    const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [correctLength, setCorrectLength] = useState(true);
+    const [username, setUsername] = useState("");
+    const [correctLength, setCorrectLength] = useState(true);
 
-  const submitForm = () => {
+    const submitForm = () => {
 
-    if (username.length <= 10 && username.length >= 1 ) {
-      setCorrectLength(true);
-      navigate("/home");
+        if (username.length <= 10 && username.length >= 1) {
+            setCorrectLength(true);
+            stateContext.setIsLogged(true)
+            navigate("/home");
 
-    } else if (username.length > 10 || username.length < 1) {
-      setCorrectLength(false)
+        } else if (username.length > 10 || username.length < 1) {
+            setCorrectLength(false)
+        }
+
     }
 
-  }
+    // useEffect(() => {
+    //     console.log(username);
+    // }, [username])
 
- useEffect(() => {
-     console.log(username);
- }, [username])
+    if (stateContext.isLogged !== false) {
+        return (
+            <SafeAreaView>
+                <View>
+                    <Text>Vous êtes déjà connecter</Text>
+                    <Text>Voulez vous déconnecter votre compte ? </Text>
+                    <TouchableOpacity><Text>Déconnexion</Text></TouchableOpacity>
+                </View>
+            </SafeAreaView>
+        )
+    }
 
-  return (
-    <SafeAreaView>
+    return (
+        <SafeAreaView style={styles.container}>
 
-      <View>
+            <View >
 
-        <Text style={styles.text}>Login</Text>
+                <Text style={styles.text}>Se Connecter</Text>
 
-        <Text>Entrez votre nom d'utilisateur pour acceder a votre compte</Text>
+                <View style={styles.loginContent}>
+                    <Text>Entrez votre nom d'utilisateur{"\n"} pour acceder a votre compte</Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder="username / Pseudo"
-          onChangeText={setUsername}
-        />
-        {!correctLength && <Text>Votre username doit contenir entre 1 et 10 caractères</Text>}
+                    <TextInput
+                        style={styles.input}
+                        placeholder="username / Pseudo"
+                        onChangeText={setUsername}
+                    />
+                    {!correctLength && <Text>Votre username doit contenir entre 1 et 10 caractères</Text>}
 
-        <TouchableOpacity style={styles.submit} onPress={submitForm}>
-          <Text>Se Connecter</Text>
-        </TouchableOpacity>
+                    <TouchableOpacity style={styles.submit} onPress={submitForm}>
+                        <Text>Connexion</Text>
+                    </TouchableOpacity>
 
-      </View>
+                </View>
 
-    </SafeAreaView>
-  );
+
+            </View>
+
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
-  input: {
-    borderWidth: 1,
-    width: 200,
-    padding: 5,
-    borderRadius: 5,
-    borderColor: "lightgrey",
-    marginTop: 10,
-  },
+    loginContent:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+    },
 
-  submit: {
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 5,
-    margin: 20,
-  },
+    input: {
+        borderWidth: 1,
+        width: 200,
+        padding: 5,
+        borderRadius: 5,
+        borderColor: "lightgrey",
+        marginTop: 10,
+    },
 
-  text: {
-    textAlign: "center",
-    fontSize: 40,
-    fontWeight: "bold",
-  }
+    submit: {
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        margin: 20,
+        alignItems: 'center',
+        maxWidth: 100,
+    },
+
+    text: {
+        textAlign: "center",
+        fontSize: 40,
+        fontWeight: "bold",
+        marginBottom:30,
+    }
 })

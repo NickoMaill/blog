@@ -1,14 +1,11 @@
 //MODULE IMPORT
 import { createContext, useState } from 'react';
 import { NativeRouter, Routes, Route } from 'react-router-native';
+import { Context } from "./Context/BlogContext";
 
 //VIEWS IMPORT
 import Login from './Views/Login';
 import Home from './Views/Home';
-
-//Create global context
-
-export const Context = createContext()
 
 export default function App() {
 
