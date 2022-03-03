@@ -38,7 +38,7 @@ export default function Login() {
         <TextInput
           style={styles.input}
           placeholder="username / Pseudo"
-          onChange={(e) => setUsername(e.target.value)}
+          onChangeText={setUsername}
         />
         {!correctLength && <Text>Votre username doit contenir entre 1 et 10 caractères</Text>}
 

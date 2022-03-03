@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import Login from './Views/Login';
 import Home from './Views/Home';
