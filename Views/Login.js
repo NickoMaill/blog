@@ -57,7 +57,7 @@ export default function Login() {
                         placeholder="username / Pseudo"
                         onChangeText={setUsername}
                     />
-                    {!correctLength && <Text>Votre username doit contenir entre 1 et 10 caractères</Text>}
+                    {!correctLength && <Text>Votre username doit être compris {"\n"} entre 1 et 10 caractères</Text>}
 
                     <TouchableOpacity style={styles.submit} onPress={submitForm}>
                         <Text>Connexion</Text>
